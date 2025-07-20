@@ -298,7 +298,18 @@ export const usePuterStore = create<PuterStore>((set, get) => {
       setError("Puter.js not available");
       return;
     }
-    return puter.fs.upload(files);
+    try {
+      const result = await puter.fs.upload(files);
+      // Ensure the path property exists and starts with a forward slash
+      if (result && result.path && !result.path.startsWith('/')) {
+        result.path = `/${result.path}`;
+      }
+      return result;
+    } catch (err) {
+      console.error('Upload error:', err);
+      setError('Failed to upload file');
+      return undefined;
+    }
   };
 
   const deleteFile = async (path: string) => {
@@ -334,6 +345,9 @@ export const usePuterStore = create<PuterStore>((set, get) => {
       return;
     }
 
+    // Ensure the path starts with a forward slash
+    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+    
     return puter.ai.chat(
       [
         {
@@ -341,7 +355,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
           content: [
             {
               type: "file",
-              puter_path: path,
+              puter_path: normalizedPath,
             },
             {
               type: "text",
@@ -350,7 +364,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
           ],
         },
       ],
-      { model: "claude-sonnet-4" }
+      { model: "claude-3-7-sonnet" }
     ) as Promise<AIResponse | undefined>;
   };
 

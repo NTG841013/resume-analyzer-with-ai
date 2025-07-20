@@ -7,11 +7,12 @@ interface Job {
 
 interface Resume {
   id: string;
-  companyName?: string;
-  jobTitle?: string;
+  companyName: string;
+  jobTitle: string;
+  jobDescription?: string;
   imagePath: string;
   resumePath: string;
-  feedback: Feedback;
+  feedback: Feedback | '';
 }
 
 interface Feedback {
@@ -55,4 +56,44 @@ interface Feedback {
       explanation: string;
     }[];
   };
+}
+
+interface FSItem {
+    name: string;
+    type: string;
+    path: string;
+    size: number;
+    modified: string;
+}
+
+interface PuterUser {
+    name: string;
+    email: string;
+    avatar?: string;
+}
+
+interface ChatMessage {
+    role: string;
+    content: Array<{
+        type: string;
+        text?: string;
+        puter_path?: string;
+    }>;
+}
+
+interface PuterChatOptions {
+    model?: string;
+    max_tokens?: number;
+    temperature?: number;
+}
+
+interface AIResponse {
+    message: {
+        content: string | Array<{ text: string }>;
+    };
+}
+
+interface KVItem {
+    key: string;
+    value: string;
 }
