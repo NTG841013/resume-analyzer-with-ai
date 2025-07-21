@@ -1,7 +1,28 @@
 import ScoreGauge from "~/components/ScoreGauge";
 import ScoreBadge from "~/components/ScoreBadge";
 
-const Category = ({ title, score }: { title: string, score: number }) => {
+interface CategoryProps {
+    title: string;
+    score: number;
+}
+
+interface FeedbackScore {
+    score: number;
+}
+
+interface Feedback {
+    overallScore: number;
+    toneAndStyle: FeedbackScore;
+    content: FeedbackScore;
+    structure: FeedbackScore;
+    skills: FeedbackScore;
+}
+
+interface SummaryProps {
+    feedback: Feedback;
+}
+
+const Category = ({ title, score }: CategoryProps) => {
     const textColor = score > 70 ? 'text-green-600'
             : score > 49
         ? 'text-yellow-600' : 'text-red-600';
@@ -21,9 +42,9 @@ const Category = ({ title, score }: { title: string, score: number }) => {
     )
 }
 
-const Summary = ({ feedback }: { feedback: Feedback }) => {
+const Summary = ({ feedback }: SummaryProps) => {
     return (
-        <div className="bg-white rounded-2xl shadow-md w-full">
+        <div className="summary-section">
             <div className="flex flex-row items-center p-4 gap-8">
                 <ScoreGauge score={feedback.overallScore} />
 
@@ -40,6 +61,7 @@ const Summary = ({ feedback }: { feedback: Feedback }) => {
             <Category title="Structure" score={feedback.structure.score} />
             <Category title="Skills" score={feedback.skills.score} />
         </div>
-    )
-}
-export default Summary
+    );
+};
+
+export default Summary;

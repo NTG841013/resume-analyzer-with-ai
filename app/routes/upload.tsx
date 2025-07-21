@@ -85,36 +85,62 @@ const Upload = () => {
 
             <section className="main-section">
                 <div className="page-heading py-16">
-                    <h1>Smart feedback for your dream job</h1>
+                    <h1 className="text-4xl font-bold text-center mb-4">Smart feedback for your dream job</h1>
                     {isProcessing ? (
                         <>
-                            <h2>{statusText}</h2>
-                            <img src="/images/resume-scan.gif" className="w-full" />
+                            <h2 className="text-xl text-gray-600 text-center mb-8">{statusText}</h2>
+                            <img src="/images/resume-scan.gif" className="w-full max-w-2xl mx-auto" />
                         </>
                     ) : (
-                        <h2>Drop your resume for an ATS score and improvement tips</h2>
+                        <h2 className="text-xl text-gray-600 text-center mb-8">Drop your resume for an ATS score and improvement tips</h2>
                     )}
                     {!isProcessing && (
-                        <form id="upload-form" onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8">
+                        <form id="upload-form" onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-2xl mx-auto w-full px-4">
                             <div className="form-div">
-                                <label htmlFor="company-name">Company Name</label>
-                                <input type="text" name="company-name" placeholder="Company Name" id="company-name" />
+                                <label htmlFor="company-name" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Company Name
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="company-name" 
+                                    placeholder="Enter the company name" 
+                                    id="company-name"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                />
                             </div>
                             <div className="form-div">
-                                <label htmlFor="job-title">Job Title</label>
-                                <input type="text" name="job-title" placeholder="Job Title" id="job-title" />
+                                <label htmlFor="job-title" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Job Title
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="job-title" 
+                                    placeholder="Enter the job title" 
+                                    id="job-title"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                />
                             </div>
                             <div className="form-div">
-                                <label htmlFor="job-description">Job Description</label>
-                                <textarea rows={5} name="job-description" placeholder="Job Description" id="job-description" />
+                                <label htmlFor="job-description" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Job Description
+                                </label>
+                                <textarea 
+                                    rows={5} 
+                                    name="job-description" 
+                                    placeholder="Paste the job description here" 
+                                    id="job-description"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                />
                             </div>
 
                             <div className="form-div">
-                                <label htmlFor="uploader">Upload Resume</label>
+                                <label htmlFor="uploader" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Upload Resume
+                                </label>
                                 <FileUploader onFileSelect={handleFileSelect} />
                             </div>
 
-                            <button className="primary-button" type="submit">
+                            <button className="primary-button w-full py-4 text-lg font-semibold" type="submit">
                                 Analyze Resume
                             </button>
                         </form>

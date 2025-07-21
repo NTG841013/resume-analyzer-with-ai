@@ -56,8 +56,8 @@ const file = acceptedFiles[0] || null;
                         </div>
             ):(
                 <div>
-                    <p className="text-lg text-gray-500">
-                    <span className="font-semibold">
+                    <p className="text-lg text-gray-500 items-center">
+                    <span className="font-semibold items-center">
                         Click to upload
                     </span> or drag and drop
                     </p>

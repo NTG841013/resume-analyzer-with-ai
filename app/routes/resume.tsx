@@ -1,12 +1,12 @@
-import {Link, useNavigate, useParams} from "react-router";
-import {useEffect, useState} from "react";
-import {usePuterStore} from "~/lib/puter";
+import { Link, useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { usePuterStore } from "~/lib/puter";
 import Summary from "~/components/summary";
 import ATS from "~/components/ATS";
 import Details from "~/components/Details";
 
 export const meta = () => ([
-    { title: 'Resumind | Review ' },
+    { title: 'Vitrae| Review ' },
     { name: 'description', content: 'Detailed overview of your resume' },
 ])
 
@@ -50,41 +50,43 @@ const Resume = () => {
     }, [id]);
 
     return (
-        <main className="!pt-0">
+        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
             <nav className="resume-nav">
                 <Link to="/" className="back-button">
                     <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
                     <span className="text-gray-800 text-sm font-semibold">Back to Homepage</span>
                 </Link>
             </nav>
-            <div className="flex flex-row w-full max-lg:flex-col-reverse">
-                <section className="feedback-section bg-[url('/images/bg-small.svg') bg-cover h-[100vh] sticky top-0 items-center justify-center">
-                    {imageUrl && resumeUrl && (
-                        <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
-                            <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                                <img
-                                    src={imageUrl}
-                                    className="w-full h-full object-contain rounded-2xl"
-                                    title="resume"
-                                />
-                            </a>
+            
+            <div className="container mx-auto px-4 py-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Left side - Resume */}
+                    <div className="bg-white rounded-2xl shadow-sm p-6">
+                        <div className="aspect-[1/1.4] w-full relative">
+                            <embed 
+                                src={resumeUrl} 
+                                type="application/pdf" 
+                                className="absolute inset-0 w-full h-full"
+                            />
                         </div>
-                    )}
-                </section>
-                <section className="feedback-section">
-                    <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
-                    {feedback ? (
-                        <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
-                            <Summary feedback={feedback} />
-                            <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []} />
-                            <Details feedback={feedback} />
-                        </div>
-                    ) : (
-                        <img src="/images/resume-scan-2.gif" className="w-full" />
-                    )}
-                </section>
+                    </div>
+
+                    {/* Right side - Review */}
+                    <div className="space-y-6">
+                        {feedback ? (
+                            <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
+                                <Summary feedback={feedback} />
+                                <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []} />
+                                <Details feedback={feedback} />
+                            </div>
+                        ) : (
+                            <img src="/images/resume-scan-2.gif" className="w-full" />
+                        )}
+                    </div>
+                </div>
             </div>
         </main>
-    )
-}
-export default Resume
+    );
+};
+
+export default Resume;

@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 
 
 export const meta = ()=>([
-    {title: 'Resumind | Auth'},
+    {title: 'Vitrae| Auth'},
     {name:'desrciption', content: 'Log into your account'},
     
 ])
