@@ -13,16 +13,15 @@ const Navbar = () => {
 
   return (
       <>
-          <nav className="navbar flex items-center">
-              <Link to="/" className="mr-auto">
-                  <p className="text-2xl font-bold text-gradient">Vitrae</p>
-              </Link>
-              <div className="flex items-center gap-4 mr-4">
-                  <Link to="/upload" className="primary-button w-fit">
+          <div className="absolute top-4 left-4">
+              <p className="text-2xl font-bold text-white">Vitrae</p>
+          </div>
+          <nav className="navbar flex items-center justify-center w-auto mx-auto">
+              <div className="flex items-center mt-2">
+                  <Link to="/upload" className="primary-button">
                       Upload Resume/CV
                   </Link>
               </div>
-           
           </nav>
           <div className="absolute top-4 right-4">
               {auth.isAuthenticated && (
