@@ -83,11 +83,20 @@ const Resume = () => {
 
     return (
         <main className="bg-[url('/images/bg.svg')] bg-cover min-h-screen">
-            <nav className="resume-nav">
+            <nav className="resume-nav flex justify-between items-center">
                 <Link to="/" className="back-button">
                     <img src="/icons/back.svg" alt="Back" className="w-2.5 h-2.5 invert" />
                     <span className="text-white text-sm font-semibold">Back to Homepage</span>
                 </Link>
+                <button 
+                    onClick={async () => {
+                        await auth.signOut();
+                        navigate('/auth');
+                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors"
+                >
+                    Log Out
+                </button>
             </nav>
             
             <div className="container mx-auto px-4 py-8">
