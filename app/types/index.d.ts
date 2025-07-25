@@ -97,3 +97,20 @@ interface KVItem {
     key: string;
     value: string;
 }
+
+export interface PuterAuth {
+  isAuthenticated: boolean;
+  logout: () => Promise<void>;
+  user?: {
+    id: string;
+    email?: string;
+  };
+}
+
+interface PuterStore {
+  auth: PuterAuth;
+  isLoading: boolean;
+  fs: PuterFS;
+  kv: PuterKV;
+  ai: PuterAI;
+}

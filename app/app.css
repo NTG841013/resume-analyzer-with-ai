@@ -27,11 +27,13 @@ main {
   @apply min-h-screen pt-10;
 }
 h1 {
-  @apply text-6xl  text-gradient leading-tight tracking-[-2px] font-semibold;
+  @apply text-6xl text-white leading-tight tracking-[-2px] font-semibold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  @apply text-3xl text-dark-200;
+  @apply text-3xl text-gray-100;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 label {
@@ -59,7 +61,7 @@ form {
   .primary-button {
     @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg 
     hover:from-blue-700 hover:to-blue-800 transition-all duration-200
-    focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-6 py-3;
   }
   .resume-nav {
     @apply flex flex-row justify-between items-center p-4 border-b border-gray-200;
@@ -71,24 +73,33 @@ form {
     }
   }
   .back-button {
-    @apply flex flex-row items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
+    @apply flex flex-row items-center gap-2 bg-blue-600 hover:bg-blue-700 
+    transition-colors duration-200 rounded-lg p-2 shadow-sm;
+  }
+  .back-button img {
+    @apply brightness-0 invert;
+  }
+  .back-button span {
+    @apply text-white text-sm font-semibold;
   }
   .auth-button {
     @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
   }
  .main-section {
-  @apply container mx-auto px-4;
+  @apply container mx-auto px-4 relative z-10;
 }
   .page-heading {
     @apply flex flex-col items-center justify-center;
   }
 
   .page-heading h1 {
-    @apply text-4xl font-bold text-center;
+    @apply text-4xl font-bold text-white mb-4;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .page-heading h2 {
-    @apply text-xl text-gray-600 text-center mt-2;
+    @apply text-xl text-gray-100 text-center mt-2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 .resumes-section {
   @apply grid gap-6 mt-8;
@@ -114,6 +125,10 @@ form {
     @apply flex flex-row justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
   }
 
+  .navbar button {
+    @apply px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200;
+  }
+
   .score-badge {
     @apply flex flex-row items-center justify-center py-1 px-2 gap-4 rounded-[96px];
   }
@@ -126,7 +141,7 @@ form {
     @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-white rounded-2xl min-h-[208px];
   }
   .uploader-selected-file {
-    @apply flex items-center justify-between p-3 bg-gray-50 rounded-2xl;
+    @apply flex items-center justify-between w-full bg-gray-50 rounded-lg p-3;
   }
 }
 
@@ -158,6 +173,26 @@ form {
 .ats-section,
 .details-section {
     @apply bg-white rounded-2xl shadow-sm p-6;
+}
+
+.summary-section h2 {
+  @apply text-2xl font-bold text-black;
+}
+
+.summary-section p {
+  @apply text-sm text-gray-500;
+}
+
+.ats-section h2 {
+  @apply text-2xl font-bold text-black;
+}
+
+.ats-section .score-value {
+  @apply text-2xl font-bold text-black;
+}
+
+.ats-section .score-label {
+  @apply text-sm text-gray-500;
 }
 
 @utility bg-gradient {
@@ -193,5 +228,49 @@ form {
   to {
     opacity: 1;
   }
+}
+
+/* Auth specific heading styles */
+.gradient-border section h1 {
+  @apply text-4xl font-semibold text-black;
+}
+
+.gradient-border section h2 {
+  @apply text-xl text-gray-700;
+}
+
+/* Keep existing general heading styles */
+.page-heading h1 {
+  @apply text-4xl font-bold text-white mb-4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.page-heading h2 {
+  @apply text-xl text-gray-100 text-center mt-2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Upload form specific styles */
+.form-div label {
+  @apply block text-sm font-medium text-black mb-2;
+}
+
+/* Keep existing form styles */
+.form-div input,
+.form-div textarea {
+  @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.bg-gradient-to-b h2 {
+  @apply text-black;
+}
+
+.ats-section h2,
+.bg-gradient-to-b h2 {
+  @apply !text-black;
+}
+
+.bg-gradient-to-b h2 {
+  @apply text-[#000000];
 }
 

@@ -4,11 +4,12 @@ import ResumeCard from "~/components/ResumeCard";
 import {usePuterStore} from "~/lib/puter";
 import {Link, useNavigate} from "react-router";
 import {useEffect, useState} from "react";
+import type { Resume } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Vitrae" },
-    { name: "description", content: "Smart feedback for your dream job!" },
+    { name: "description", content: "AI powered feedback to get you into the job you want!" },
   ];
 }
 
@@ -39,16 +40,16 @@ export default function Home() {
     loadResumes()
   }, []);
 
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+  return <main className="bg-[url('/images/bg.svg')] bg-cover">
     <Navbar />
 
     <section className="main-section">
-      <div className="page-heading py-16 text-center">  {/* Added text-center class */}
-        <h1 className="mb-4">Track Your Applications & Resume Ratings</h1>
+      <div className="page-heading py-16 text-center">
+        <h1 className="mb-4 text-white font-bold text-4xl">Rating your resume and tracking all your applications</h1>
         {!loadingResumes && resumes?.length === 0 ? (
-            <h2>No resumes found. Upload your first resume to get feedback.</h2>
+            <h2 className="text-gray-100 text-xl">No resumes found. Upload your first resume to get feedback.</h2>
         ): (
-          <h2>Review your submissions and check AI-powered feedback.</h2>
+          <h2 className="text-gray-100 text-xl">Review your submissions and check AI-powered feedback.</h2>
         )}
       </div>
       {loadingResumes && (
@@ -67,7 +68,7 @@ export default function Home() {
 
       {!loadingResumes && resumes?.length === 0 && (
           <div className="flex flex-col items-center justify-center mt-10 gap-4">
-            <Link to="/upload" className="primary-button w-fit text-xl font-semibold">
+            <Link to="/upload" className="primary-button w-fit text-xl font-semibold text-white">
               Upload Resume
             </Link>
           </div>
